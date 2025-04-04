@@ -1,29 +1,26 @@
 name: Super Lint Check
+
 on: [push, pull_request]
+
+permissions:
+  contents: read
+  packages: read
+  statuses: write
+
 jobs:
-  Build:
-    name: Lint
+  lint:
+    name: Lint Code
     runs-on: ubuntu-latest
-    permission:
-      contents: read
-      packages: read
-      statuses: write
     steps:
-      - name: Get code
+      - name: Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Run Super Linter
         uses: super-linter/super-linter@v7.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: true
-          DEFAULT_BRANCH: main
-          VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_TYPESCRIPT_ES: true
-          VALIDATE_JSX: true
-          VALIDATE_TSX: true
-          VALIDATE_JSON: true
-          VALIDATE_MARKDOWN: true
-          VALIDATE_YAML: true
-                
+          VALIDATE_ALL_CODEBASE: true  # Optional: validate whole repo
+          DEFAULT_BRANCH: main         # Required if VALIDATE_ALL_CODEBASE is true
+          RUN_LOCAL: false
