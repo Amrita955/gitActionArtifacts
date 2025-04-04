@@ -1,7 +1,5 @@
 name: Super Lint Check
-on:
-  push: null
-  pull_request: null
+on: [push, pull_request]
 permission: {}
 jobs:
   Build:
