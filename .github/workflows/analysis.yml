@@ -1,0 +1,22 @@
+name: Super Lint Check
+on:
+  push: null
+  pull_request: null
+permission: {}
+jobs:
+  Build:
+    name: Lint
+    runs-on: ubuntu-latest
+    permission:
+      contents: read
+      packages: read
+      statuses: write
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Lint Check
+        uses: super-linter/super-linter@7.3.0
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
