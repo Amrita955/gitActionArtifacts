@@ -39,5 +39,9 @@ jobs:
           name: dist-artifact-files
       - name: Output contents
         run: ls
+      - name: Chek inside dist
+        run: cd ..
+      - name: dist files
+        run: ls
       - name: Deploy
         run: echo "Deploying..."
