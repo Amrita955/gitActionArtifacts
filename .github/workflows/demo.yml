@@ -19,7 +19,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     outputs:
-      script-file: ${{ steps.publish.outputs.javascript-file }}                            ## just an identifier
+      script-file: ${{ steps.publish.outputs.script-file }}                            ## just an identifier
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -31,7 +31,7 @@ jobs:
         id: publish
         run: |  ## any name you can add or the identifier as well
           for file in dist/assets/*.js; do
-            echo "javascript-file=$file" >> "$GITHUB_OUTPUT"
+            echo "script-file=$file" >> "$GITHUB_OUTPUT"
           done
         shell: bash
       - name: Upload Artifacts
